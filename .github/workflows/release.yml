@@ -21,7 +21,7 @@ jobs:
     # if you ever want it. Must match what you configure on npmjs.com (or remove there too).
     environment:
       name: npm-publish
-      url: https://www.npmjs.com/package/${{ github.event.repository.name }}
+      url: https://www.npmjs.com/package/@hebcal/${{ github.event.repository.name }}
     permissions:
       contents: read
       id-token: write   # REQUIRED for OIDC trusted publishing
