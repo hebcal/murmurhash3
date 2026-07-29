@@ -1,0 +1,53 @@
+{
+  "name": "@hebcal/murmurhash3",
+  "version": "1.0.0",
+  "author": "Michael J. Radwin (https://github.com/mjradwin)",
+  "keywords": [
+    "hash",
+    "murmur",
+    "murmurhash",
+    "murmurhash3",
+    "hebcal"
+  ],
+  "description": "Pure-JavaScript MurmurHash3 (x86 32-bit and 128-bit), byte-compatible with the native murmurhash3 package",
+  "type": "module",
+  "module": "./dist/murmurhash3.js",
+  "typings": "./dist/murmurhash3.d.ts",
+  "exports": {
+    ".": "./dist/murmurhash3.js"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "engines": {
+    "node": ">= 20"
+  },
+  "files": [
+    "dist"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hebcal/murmurhash3.git"
+  },
+  "bugs": {
+    "url": "https://github.com/hebcal/murmurhash3/issues"
+  },
+  "homepage": "https://github.com/hebcal/murmurhash3#readme",
+  "scripts": {
+    "build": "tsc",
+    "pretest": "npm run build",
+    "test": "vitest run",
+    "lint": "oxlint && prettier --check .",
+    "clean": "rm -rf dist",
+    "compile": "tsc",
+    "fix": "oxlint --fix && prettier --write ."
+  },
+  "license": "BSD-2-Clause",
+  "devDependencies": {
+    "@types/node": "26.1.1",
+    "oxlint": "^1.76.0",
+    "prettier": "^3.9.6",
+    "typescript": "^7.0.2",
+    "vitest": "^4.1.10"
+  }
+}
