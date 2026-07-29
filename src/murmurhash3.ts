@@ -24,9 +24,19 @@ function fmix32(h: number): number {
   return h;
 }
 
-function toBytes(key: string): Uint8Array {
-  // Hash the UTF-8 encoding, matching the native binding's Utf8Value().
-  return new TextEncoder().encode(key);
+// Encode the key as UTF-8, matching the native binding's Utf8Value(). Node's
+// Buffer.from() is several times faster than TextEncoder.encode() for the short
+// strings this package hashes, so prefer it when available and fall back to
+// TextEncoder in non-Node runtimes. The implementation is chosen once, at module
+// load, rather than branched per call. Both produce identical bytes for
+// well-formed strings; the manual byte indexing below works on either a Buffer
+// or a plain Uint8Array.
+let toBytes: (key: string) => Uint8Array;
+if (typeof Buffer !== 'undefined' && typeof Buffer.from === 'function') {
+  toBytes = key => Buffer.from(key, 'utf8');
+} else {
+  const encoder = new TextEncoder();
+  toBytes = key => encoder.encode(key);
 }
 
 function readUInt32LE(b: Uint8Array, i: number): number {
