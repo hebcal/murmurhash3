@@ -1,0 +1,4 @@
+dist/
+test/fixtures.json
+package-lock.json
+.github/
